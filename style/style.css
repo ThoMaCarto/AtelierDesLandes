@@ -2,14 +2,18 @@
 body {
     padding: 0;
     margin: 0;
-	font: 14px Arial, Helvetica, sans-serif;*/
+	font: 14px Arial, Helvetica, sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .info{
 	display:flex;
 	flex-direction:row;
 	flex-wrap: wrap;
-	min-height:480px;
+	height:35vw;
+	overflow-y:auto;
 }
 
 .pied{
@@ -33,7 +37,8 @@ details>img{float:left;}
 
 #map{
 	height: 100%;
-	min-width: 70vw;
+	width: 960px;
+	
 	/*background-color: pink;*/
 	
 }
@@ -41,10 +46,11 @@ details>img{float:left;}
 .panneau{
 	height:100%;
 	
-	width:30vw;
+	/*width:480px;*/
 	padding:0 1% 0 2%;
+	/*background-color: pink;*/
 	
-	overflow-y:scroll;
+	overflow-y:auto;
 }
 
 .panneau>p{
