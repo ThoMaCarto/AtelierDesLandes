@@ -58,3 +58,7 @@ details>img{float:left;}
 	
 	float:right;
 	}
+.panneau>img{
+	max-width:30vw;
+	max-height:90%;
+}
