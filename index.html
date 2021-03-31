@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Traces paysagères de la centrale du Blayais</title>
+	<meta name="author" content="Thomas Maillard">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	
+	<!-- feuille de style personnalisée-->
+	<link rel="stylesheet" href="style/style.css"/>
+	<link rel="icon" type="image/png" href="style/favico2.png" />
+	
+	<!-- chargement des ressources extenres :librairies externes de javascript et feuilles de styles-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+      
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+   
+   <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+   <link rel="stylesheet" type="text/css"  href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+   <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+   
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+   <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+   
+   <!-- jQuery - indispensable pour utiliser les fichiers geojson -->
+	<!--<script type="text/javascript" src="dist/jquery.js"></script>-->
+	<script type="text/javascript" src="dist/jquery.min.js"></script>
+	
+	<!-- GeoCSV: https://github.com/joker-x/Leaflet.geoCSV -->
+		<script src="dist/leaflet.geocsv.js"></script>
+	
+	<!-- chargement des bases de données géographiques en geojson-->
+	<!-- <script src="territoires.json"></script>
+	<script src="initiatives.json"></script> -->
+
+	
+	
+   
+   
+   
+</head>
+
+
+<body>
+
+<section class="content">
+	<header>
+		<div class="enligne">
+			<img src="style/favico2.png" style="height:70px;">
+			<div class="encolonne">
+				<h1>Traces Paysagères de la centrale</h1>
+				<small>Mutations paysagères induites par la construction de la centrale nucléaire du Blayais</small>
+			</div>
+		</div>
+		
+	</header>
+	
+	<div class="info">
+		<div id="map" class="map"></div>
+		<div id="panneau" class="panneau">
+		</div>
+	</div>
+	
+	<div class="pied">
+		<small>Prototype créé par <a href="https://cv.archives-ouvertes.fr/thomas-maillard">T. Maillard</a></small>
+		<img src="style/ensap_logo.jpg" alt="ENSAP Bordeaux">
+		<img src="style/passages_logo.png" alt="CNRS UMR Passages">
+	</div>
+	
+</section>
+
+<footer>
+
+<script>
+
+
+
+</script>
+
+<script src="doc/carte.js"></script>
+	
+
+</footer>
+
+</body>
