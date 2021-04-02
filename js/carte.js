@@ -119,7 +119,7 @@ north.addTo(map);
 $.get('doc/test_2_csv.csv', function(csvContents) {
     var geoLayer = L.geoCsv(csvContents, {
 		firstLineTitles: true, 
-		fieldSeparator: ',',
+		fieldSeparator: ';',
 		titles: ['ID','Tags_Enjeux','Tags_Ressources','Theme','Problematique','Sujet' ,'Nom','Lieu','Description','strategies','Acteurs','Etudiants','annees','dossier_img','Illustrations','lat','lng'],
 		pointToLayer: function (feature,latlng){
 /*function getMarkerColor(d){
