@@ -114,5 +114,84 @@ north.onAdd = function(map)
 }
 north.addTo(map);
 
+//// Création des points
+
+$.get('doc/test_2_csv.csv', function(csvContents) {
+    var geoLayer = L.geoCsv(csvContents, {
+		firstLineTitles: true, 
+		fieldSeparator: ',',
+		titles: ['ID','Tags_Enjeux','Tags_Ressources','Theme','Problematique','Sujet' ,'Nom','Lieu','Description','strategies','Acteurs','Etudiants','annees','dossier_img','Illustrations','lat','lng'],
+		pointToLayer: function (feature,latlng){
+/*function getMarkerColor(d){
+	{
+	switch (d)
+	{
+		case "VRD":
+			return "#6F603D";
+		case "hydro":
+			return "#4EA9A0";
+		case "loisir":
+			return "#FF931C";
+		case "patrimoine":
+			return "#413C3C";
+		case "excentre":
+			return "#E82759";
+		case "habitat":
+			return " #FFFCFA";
+		case "edf":
+			return " #FFD133";
+		case "agri":
+			return " #778E60";
+		case "reserve":
+			return " #969514 ";
+		case "citoyenneté":
+			return " #EACFB8 ";	
+			
+		default:
+			return "grey";
+	}
+}
+}*/
+			var marker = L.circleMarker(latlng,{radius:8,fillColor:'blue',fillOpacity:0.9,color:'black',weight:1,});
+			marker.bindPopup('<b>'+feature.properties.Nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.Etudiants+'</small><br/><p>'+feature.properties.Description+'</p>');
+			return marker;
+		}
+		/*onEachFeature:function (feature,layer){
+			layer.bindPopup('<b>'+feature.properties.name+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>photographie © '+feature.properties.auteur+'</small><br/><p>'+feature.properties.user_comment+'</p>');
+			
+		}*/
+		
+		
+		});
+		
+		
+/*		var iconclustersInit = L.markerClusterGroup(
+	{
+		maxClusterRadius: 5,
+		singleMarkerMode: false,
+		zoomToBoundsOnClick: true,
+		spiderfyOnMaxZoom: true,
+		clusterPane: '630',
+		iconCreateFunction: function(cluster)
+		{
+			var markers = cluster.getAllChildMarkers();
+			var n = markers.length;
+			var e = n * 3;
+			var f = e;
+			return L.divIcon(
+			{
+				html: '<p style="line-height:'+f+'px;margin:auto;">'+markers.length+'</p>',
+				className: 'mycluster',
+				iconSize: L.point(e, e)
+			});
+		},
+	});*/
+	/*iconclustersInit.addLayer(geoLayer);
+    map.addLayer(iconclustersInit);*/
+	map.addLayer(geoLayer);
+	console.log (geoLayer);
+	
+
+  });
 
 ////Paramétrage des filtres
