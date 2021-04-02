@@ -152,9 +152,9 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
 	}
 }
 }*/
-			/*var marker = L.circleMarker(latlng,{radius:8,fillColor:'blue',fillOpacity:0.9,color:'black',weight:1,});
+			var marker = L.circleMarker(latlng,{radius:8,fillColor:'blue',fillOpacity:0.9,color:'black',weight:1,});
 			marker.bindPopup('<b>'+feature.properties.Nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.Etudiants+'</small><br/><p>'+feature.properties.Description+'</p>');
-			return marker;*/
+			return marker;
 		}
 		/*onEachFeature:function (feature,layer){
 			layer.bindPopup('<b>'+feature.properties.name+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>photographie © '+feature.properties.auteur+'</small><br/><p>'+feature.properties.user_comment+'</p>');
