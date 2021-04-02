@@ -165,7 +165,7 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
 		});
 		
 		
-/*		var iconclustersInit = L.markerClusterGroup(
+		var iconclustersInit = L.markerClusterGroup(
 	{
 		maxClusterRadius: 5,
 		singleMarkerMode: false,
@@ -185,10 +185,10 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
 				iconSize: L.point(e, e)
 			});
 		},
-	});*/
-	/*iconclustersInit.addLayer(geoLayer);
-    map.addLayer(iconclustersInit);*/
-	map.addLayer(geoLayer);
+	});
+	iconclustersInit.addLayer(geoLayer);
+    map.addLayer(iconclustersInit);
+	//map.addLayer(geoLayer);
 	console.log (geoLayer);
 	
 
