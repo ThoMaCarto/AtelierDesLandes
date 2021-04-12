@@ -116,7 +116,7 @@ north.onAdd = function(map)
 }
 north.addTo(map);
 
-//// Création des points sur la carte
+/// Création des points sur la carte
 
 $.get('doc/test_2_csv.csv', function(csvContents) {
     var geoLayer = L.geoCsv(csvContents, {
@@ -188,9 +188,9 @@ var TagsRCheckBox = '';
 
 for (var i = 0; i < TagsRessources2.length; i++)
 {
-	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updateInitiativeLayer()" checked/>' + TagsRessources2[i] + '<br>';
+	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updategeoLayer()" checked/>' + TagsRessources2[i] + '<br>';
 }
-div1.innerHTML = '<h4>Type de partenaires</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateInitiativeLayer()" checked/><b>Tout sélectionner</b><br>' 
+div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updategeoLayer()" checked/><b>Tout sélectionner</b><br>' 
 + TagsRCheckBox+'<br>';
 
 ///fin
@@ -198,10 +198,42 @@ div1.innerHTML = '<h4>Type de partenaires</h4><input id="all" class="input" type
 				
 });
 		
-		
+	//création d'une couche affichant le geojson temporaire
+/*function updategeoLayer()
+{
+	var initiativesChecked = {
+		"type": "FeatureCollection",
+		"features": []
+	};
+	updateInitiativesChecked();
+	map.eachLayer(function(layer)
+	{
+		map.removeLayer(layer)
+	});
+	displayLayersInit();
+	//Affichage du control Info en fonction des couches sélectionnées
+	function displayInfo()
+	{
+		if (map.hasLayer(coucheTerritoires))
+		{
+			info.addTo(this);
+		}
+		else
+		{
+			info.remove(this);
+		}
+	};
+	map.on('overlayadd', displayInfo);
+	map.on('overlayremove', displayInfo);
+	map.addLayer(designFond (typeFond)); //paramètré dans le fichier HTML
+	displayTerritories(afficherTerritoires)//paramètré dans le fichier HTML
+	dispalyLieuxcles(afficherLieuxcles)//paramètré dans le fichier HTML
+	displayInitiatives(afficherInitiatives)//paramètré dans le fichier HTML
+	
+};	*/
 	
 	map.addLayer(geoLayer);
-	console.log (geoLayer);
+	console.log (geoLayer.features[1].properties.tags_ressources);
 	
 
 
