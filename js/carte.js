@@ -15,7 +15,7 @@ var attribMARGINOV = '<b>Données</b> © <a href="http://www.marginov.cnrs.fr/?p
 
 
 
-map.setView([44.35622,-0.76433], 9);
+//map.setView([44.35622,-0.76433], 9);
 //fond de carte
 // création d'une couche "osmfr"
 //OSM FR utilise les données OSM avec une charte graphique développé pour le territoire français 
@@ -116,8 +116,10 @@ north.onAdd = function(map)
 }
 north.addTo(map);
 
+
+
 /// Affichage de la couche test_geojson
-//affichage des points sur la carte et définition du style
+//chargement des points du geojson et définition du style
 var geoLayer = L.geoJson(projetsEtudiant,{
 	pointToLayer: function (feature,latlng){
 		///Paramètre de style des points
@@ -140,10 +142,16 @@ var geoLayer = L.geoJson(projetsEtudiant,{
 			return marker;
 	}
 }
-
 ).addTo(map);
 
+///paramètrage de la vue dela carte
 
+var centerMaptest = [geoLayer.getBounds().getCenter().lat,geoLayer.getBounds().getCenter().lng];
+//si le centerMap = auto est auto alros centre de gravité de la couche territoires, sinon utilisation de la valeur de centermap
+function setMapCenter (centerMap){
+	if (centerMap === "auto"){return centerMaptest;}else{return centerMap;}
+}
+map.setView(setMapCenter (centerMap), 9);
 
 ///gestion des filtres	
 //création d'un tableaux contenant les valeurs uniques des tags ressources
@@ -179,65 +187,59 @@ TagsRessources2.sort();
 var checkboxStates = {
 	Type: TagsRessources2,
 };
-console.log(TagsRessources2);
 
-//Création du panneau de commande des types d'acteurs
-var div1 = document.getElementById('rechercherapide');
+
+//Création du panneau de commande des tags ressources
+var div1 = document.getElementById('tagsRessources');
 var TagsRCheckBox = '';
 
 for (var i = 0; i < TagsRessources2.length; i++)
 {
-	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updategeoLayer()" checked/>' + TagsRessources2[i] + '<br>';
+	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updateProjectsLayer()" checked/>' + TagsRessources2[i] + '<br>';
 }
-div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updategeoLayer()" checked/><b>Tout sélectionner</b><br>' 
+div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateProjectsLayer()" checked/><b>Tout sélectionner</b><br>' 
 + TagsRCheckBox+'<br>';
+
+// gestion de la checkbox "all": tout sélectionner ou déselectionner en fonction du statut checked ou non
+function toggle(source)
+{
+	var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+	for (var i = 0; i < checkboxes.length; i++)
+	{
+		if (checkboxes[i] != source) checkboxes[i].checked = source.checked;
+	}
+}
+
+
+// fonction de mise à jours de la liste des filtre
+function updateCheckboxStates()
+{
+	checkboxStates.Type.splice(0, checkboxStates.Type.length);
+	
+	var checkboxes = document.querySelectorAll('#tagsRessources>.input');
+	for (var i = 0; i < checkboxes.length; i++)
+	{
+		var check = [checkboxes[i].value];
+		if (checkboxes[i].checked)
+		{
+			checkboxStates.Type.push(checkboxes[i].value)
+		};
+	};
+};
+
+function updateProjectsLayer(){
+	updateCheckboxStates();
+	
+}
+
+
+
+
+
+
 
 ///fin
 
 				
 
-		
-	//création d'une couche affichant le geojson temporaire
-/*function updategeoLayer()
-{
-	var initiativesChecked = {
-		"type": "FeatureCollection",
-		"features": []
-	};
-	updateInitiativesChecked();
-	map.eachLayer(function(layer)
-	{
-		map.removeLayer(layer)
-	});
-	displayLayersInit();
-	//Affichage du control Info en fonction des couches sélectionnées
-	function displayInfo()
-	{
-		if (map.hasLayer(coucheTerritoires))
-		{
-			info.addTo(this);
-		}
-		else
-		{
-			info.remove(this);
-		}
-	};
-	map.on('overlayadd', displayInfo);
-	map.on('overlayremove', displayInfo);
-	map.addLayer(designFond (typeFond)); //paramètré dans le fichier HTML
-	displayTerritories(afficherTerritoires)//paramètré dans le fichier HTML
-	dispalyLieuxcles(afficherLieuxcles)//paramètré dans le fichier HTML
-	displayInitiatives(afficherInitiatives)//paramètré dans le fichier HTML
-	
-};	*/
-	
-	/*map.addLayer(geoLayer);
-	console.log (geoLayer.Object[1].features.properties.tags_ressources);
-	
 
-
-
-
-  });*/
-
-////Paramétrage des filtres
