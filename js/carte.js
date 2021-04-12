@@ -153,7 +153,7 @@ function getMarkerColor(d){
 		});
 		
 		
-		var iconclustersInit = L.markerClusterGroup(
+	/*	var iconclustersInit = L.markerClusterGroup(
 	{
 		maxClusterRadius: 5,
 		singleMarkerMode: false,
@@ -173,7 +173,7 @@ function getMarkerColor(d){
 				iconSize: L.point(e, e)
 			});
 		},
-	});
+	});*/
 	//iconclustersInit.addLayer(geoLayer);
    // map.addLayer(iconclustersInit);
 	map.addLayer(geoLayer);
