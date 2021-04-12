@@ -116,7 +116,12 @@ north.onAdd = function(map)
 }
 north.addTo(map);
 
-/// Création des points sur la carte
+/// Affichage de la couche test_geojson
+
+var geoLayer = L.geoJson(projetsEtudiant,
+;).addTo(map);
+
+/*/// Création des points sur la carte
 
 $.get('doc/test_2_csv.csv', function(csvContents) {
     var geoLayer = L.geoCsv(csvContents, {
@@ -232,13 +237,13 @@ div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" t
 	
 };	*/
 	
-	map.addLayer(geoLayer);
+	/*map.addLayer(geoLayer);
 	console.log (geoLayer.Object[1].features.properties.tags_ressources);
 	
 
 
 
 
-  });
+  });*/
 
 ////Paramétrage des filtres
