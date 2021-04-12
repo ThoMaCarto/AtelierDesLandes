@@ -120,7 +120,7 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
     var geoLayer = L.geoCsv(csvContents, {
 		firstLineTitles: true, 
 		fieldSeparator: ';',
-		titles: ['ID','Tags_Enjeux','Tags_Ressources','Theme','Problematique','Sujet' ,'Nom','Lieu','Description','strategies','Acteurs','Etudiants','annees','dossier_img','Illustrations','lat','lng'],
+		titles: ['ID','thema','pb','sujet','nom','lieu','lng','lat','descr','tags_enjeux','tags_ressources','strategie','acteurs','etudiants','date'],
 		pointToLayer: function (feature,latlng){
 /*function getMarkerColor(d){
 	{
