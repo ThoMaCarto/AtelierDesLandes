@@ -122,37 +122,21 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
 		fieldSeparator: ';',
 		titles: ['ID','thema','pb','sujet','nom','lieu','lng','lat','descr','tags_enjeux','tags_ressources','strategie','acteurs','etudiants','date'],
 		pointToLayer: function (feature,latlng){
-/*function getMarkerColor(d){
+function getMarkerColor(d){
 	{
 	switch (d)
 	{
-		case "VRD":
-			return "#6F603D";
-		case "hydro":
-			return "#4EA9A0";
-		case "loisir":
-			return "#FF931C";
-		case "patrimoine":
-			return "#413C3C";
-		case "excentre":
-			return "#E82759";
-		case "habitat":
-			return " #FFFCFA";
-		case "edf":
-			return " #FFD133";
-		case "agri":
-			return " #778E60";
-		case "reserve":
-			return " #969514 ";
-		case "citoyenneté":
-			return " #EACFB8 ";	
+		case "Identification de potentiels":
+			return "#6669900";
+		case "Expérimentations théoriques avec les ressources":
+			return "#e27100";	
 			
 		default:
 			return "grey";
 	}
 }
-}*/
-			var marker = L.circleMarker(latlng,{radius:8,fillColor:'blue',fillOpacity:0.9,color:'black',weight:1,});
+}
+			var marker = L.circleMarker(latlng,{radius:8,fillColor:getMarkerColor(feature.properties.thema),fillOpacity:0.9,color:'black',weight:1,});
 			marker.bindPopup('<b>'+feature.properties.nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.etudiants+'</small><br/><p>'+feature.properties.descr+'</p>');
 			return marker;
 		}
