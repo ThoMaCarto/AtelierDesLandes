@@ -180,6 +180,7 @@ TagsRessources2.sort();
 var checkboxStates = {
 	Type: TagsRessources2,
 };
+console.log(TagsRessources2);
 
 //Création du panneau de commande des types d'acteurs
 var div1 = document.getElementById('rechercherapide');
