@@ -233,7 +233,7 @@ div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" t
 };	*/
 	
 	map.addLayer(geoLayer);
-	console.log (geoLayer.features[1].properties.tags_ressources);
+	console.log (geoLayer.Object[1].features.properties.tags_ressources);
 	
 
 
