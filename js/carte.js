@@ -202,7 +202,7 @@ div1.innerHTML = '<h4>Type de partenaires</h4><input id="all" class="input" type
 	
 	map.addLayer(geoLayer);
 	console.log (geoLayer);
-	console.log(TagsRessources2);
+	
 
 
 
