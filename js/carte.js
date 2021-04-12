@@ -127,7 +127,7 @@ function getMarkerColor(d){
 	switch (d)
 	{
 		case "Identification de potentiels":
-			return "#6669900";
+			return "#669900";
 		case "Expérimentations théoriques avec les ressources":
 			return "#e27100";	
 			
