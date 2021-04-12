@@ -13,6 +13,8 @@ var map = L.map('map',
 //attribution
 var attribMARGINOV = '<b>Données</b> © <a href="http://www.marginov.cnrs.fr/?page_id=214">MARGINOV</a>'
 
+
+
 map.setView([44.35622,-0.76433], 9);
 //fond de carte
 // création d'une couche "osmfr"
@@ -122,6 +124,8 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
 		fieldSeparator: ';',
 		titles: ['ID','thema','pb','sujet','nom','lieu','lng','lat','descr','tags_enjeux','tags_ressources','strategie','acteurs','etudiants','date'],
 		pointToLayer: function (feature,latlng){
+
+
 function getMarkerColor(d){
 	{
 	switch (d)
@@ -170,9 +174,9 @@ function getMarkerColor(d){
 			});
 		},
 	});
-	iconclustersInit.addLayer(geoLayer);
-    map.addLayer(iconclustersInit);
-	//map.addLayer(geoLayer);
+	//iconclustersInit.addLayer(geoLayer);
+   // map.addLayer(iconclustersInit);
+	map.addLayer(geoLayer);
 	console.log (geoLayer);
 	
 
