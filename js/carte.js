@@ -118,8 +118,7 @@ north.addTo(map);
 
 /// Affichage de la couche test_geojson
 
-var geoLayer = L.geoJson(projetsEtudiant,
-;).addTo(map);
+var geoLayer = L.geoJson(projetsEtudiant).addTo(map);
 
 /*/// Création des points sur la carte
 
