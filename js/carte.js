@@ -144,41 +144,60 @@ function getMarkerColor(d){
 			marker.bindPopup('<b>'+feature.properties.nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.etudiants+'</small><br/><p>'+feature.properties.descr+'</p>');
 			return marker;
 		}
-		/*onEachFeature:function (feature,layer){
-			layer.bindPopup('<b>'+feature.properties.name+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>photographie © '+feature.properties.auteur+'</small><br/><p>'+feature.properties.user_comment+'</p>');
-			
-		}*/
-		
-		
+				
 		});
 		
 		
-	/*	var iconclustersInit = L.markerClusterGroup(
-	{
-		maxClusterRadius: 5,
-		singleMarkerMode: false,
-		zoomToBoundsOnClick: true,
-		spiderfyOnMaxZoom: true,
-		clusterPane: '630',
-		iconCreateFunction: function(cluster)
-		{
-			var markers = cluster.getAllChildMarkers();
-			var n = markers.length;
-			var e = n * 3;
-			var f = e;
-			return L.divIcon(
-			{
-				html: '<p style="line-height:'+f+'px;margin:auto;">'+markers.length+'</p>',
-				className: 'mycluster',
-				iconSize: L.point(e, e)
-			});
-		},
-	});*/
-	//iconclustersInit.addLayer(geoLayer);
-   // map.addLayer(iconclustersInit);
+	
 	map.addLayer(geoLayer);
 	console.log (geoLayer);
-	
+
+
+///gestion des filtres	
+//création d'un tableaux contenant les valeurs uniques des tags ressources
+var TagsRessources1 = [];
+var initSelectTagsR=[];
+for (var i = 0; i < geoLayer.features.length; i++){
+			initSelectTagsR.push(geoLayer.features[i].properties.tags_ressources)
+	}
+for (var j=0;j<initSelectTagsR.length;j++){
+	for(var e=0;e<initSelectTagsR[j].length;e++){
+		var iterator = initSelectTagsR[j].values();
+		for (let elements of iterator) { 
+			TagsRessources1.push(elements);
+		} 
+	}
+}
+function removeDuplicates(d)
+{
+	let unique = {};
+	d.forEach(function(i)
+	{
+		if (!unique[i])
+		{
+			unique[i] = true;
+		}
+	});
+	return Object.keys(unique);
+}	
+var TagsRessources2 = removeDuplicates(TagsRessources1);
+TagsRessources2.sort();
+
+//Création de la liste remplie à l'ouverture de la page
+var checkboxStates = {
+	Type: TagsRessources2,
+};
+
+//Création du panneau de commande des types d'acteurs
+var div1 = document.getElementById('rechercherapide');
+var TagsRCheckBox = '';
+
+for (var i = 0; i < TagsRessources2.length; i++)
+{
+	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updateInitiativeLayer()" checked/>' + TagsRessources2[i] + '<br>';
+}
+div1.innerHTML = '<h4>Type de partenaires</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateInitiativeLayer()" checked/><b>Tout sélectionner</b><br>' 
++ TagsRCheckBox+'<br>';
 
   });
 
