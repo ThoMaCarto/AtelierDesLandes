@@ -192,14 +192,16 @@ for (var i = 0; i < TagsRessources2.length; i++)
 div1.innerHTML = '<h4>Type de partenaires</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateInitiativeLayer()" checked/><b>Tout sélectionner</b><br>' 
 + TagsRCheckBox+'<br>';
 
+///fin
 }
 				
-		});
+});
 		
 		
 	
 	map.addLayer(geoLayer);
 	console.log (geoLayer);
+	console.log(TagsRessources2);
 
 
 
