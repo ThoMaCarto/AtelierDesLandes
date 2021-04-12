@@ -117,45 +117,40 @@ north.onAdd = function(map)
 north.addTo(map);
 
 /// Affichage de la couche test_geojson
-
-var geoLayer = L.geoJson(projetsEtudiant).addTo(map);
-
-/*/// Création des points sur la carte
-
-$.get('doc/test_2_csv.csv', function(csvContents) {
-    var geoLayer = L.geoCsv(csvContents, {
-		firstLineTitles: true, 
-		fieldSeparator: ';',
-		titles: ['ID','thema','pb','sujet','nom','lieu','lng','lat','descr','tags_enjeux','tags_ressources','strategie','acteurs','etudiants','date'],
-		pointToLayer: function (feature,latlng){
+//affichage des points sur la carte et définition du style
+var geoLayer = L.geoJson(projetsEtudiant,{
+	pointToLayer: function (feature,latlng){
+		///Paramètre de style des points
+		function getMarkerColor(d){
+			{
+			switch (d)
+				{
+				case "Identification de potentiels":
+					return "#669900";
+				case "Expérimentations théoriques avec les ressources":
+					return "#e27100";	
 			
-
-
-///Paramètre de style des points
-function getMarkerColor(d){
-	{
-	switch (d)
-	{
-		case "Identification de potentiels":
-			return "#669900";
-		case "Expérimentations théoriques avec les ressources":
-			return "#e27100";	
-			
-		default:
-			return "grey";
-	}
-}
-}
+				default:
+					return "grey";
+				}
+			}
+		}
 			var marker = L.circleMarker(latlng,{radius:8,fillColor:getMarkerColor(feature.properties.thema),fillOpacity:0.9,color:'black',weight:1,});
 			marker.bindPopup('<b>'+feature.properties.nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.etudiants+'</small><br/><p>'+feature.properties.descr+'</p>');
 			return marker;
+	}
+}
+
+).addTo(map);
+
+
 
 ///gestion des filtres	
 //création d'un tableaux contenant les valeurs uniques des tags ressources
 var TagsRessources1 = [];
 var initSelectTagsR=[];
-for (var i = 0; i < geoLayer.features.length; i++){
-			initSelectTagsR.push(geoLayer.features[i].properties.tags_ressources)
+for (var i = 0; i < projetsEtudiant.features.length; i++){
+			initSelectTagsR.push(projetsEtudiant.features[i].properties.tags_ressources)
 	}
 for (var j=0;j<initSelectTagsR.length;j++){
 	for(var e=0;e<initSelectTagsR[j].length;e++){
@@ -198,9 +193,9 @@ div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" t
 + TagsRCheckBox+'<br>';
 
 ///fin
-}
+
 				
-});
+
 		
 	//création d'une couche affichant le geojson temporaire
 /*function updategeoLayer()
