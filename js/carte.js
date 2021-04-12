@@ -124,35 +124,7 @@ $.get('doc/test_2_csv.csv', function(csvContents) {
 		fieldSeparator: ';',
 		titles: ['ID','thema','pb','sujet','nom','lieu','lng','lat','descr','tags_enjeux','tags_ressources','strategie','acteurs','etudiants','date'],
 		pointToLayer: function (feature,latlng){
-
-
-function getMarkerColor(d){
-	{
-	switch (d)
-	{
-		case "Identification de potentiels":
-			return "#669900";
-		case "Expérimentations théoriques avec les ressources":
-			return "#e27100";	
 			
-		default:
-			return "grey";
-	}
-}
-}
-			var marker = L.circleMarker(latlng,{radius:8,fillColor:getMarkerColor(feature.properties.thema),fillOpacity:0.9,color:'black',weight:1,});
-			marker.bindPopup('<b>'+feature.properties.nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.etudiants+'</small><br/><p>'+feature.properties.descr+'</p>');
-			return marker;
-		}
-				
-		});
-		
-		
-	
-	map.addLayer(geoLayer);
-	console.log (geoLayer);
-
-
 ///gestion des filtres	
 //création d'un tableaux contenant les valeurs uniques des tags ressources
 var TagsRessources1 = [];
@@ -198,6 +170,36 @@ for (var i = 0; i < TagsRessources2.length; i++)
 }
 div1.innerHTML = '<h4>Type de partenaires</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateInitiativeLayer()" checked/><b>Tout sélectionner</b><br>' 
 + TagsRCheckBox+'<br>';
+
+///Paramètre de style des points
+function getMarkerColor(d){
+	{
+	switch (d)
+	{
+		case "Identification de potentiels":
+			return "#669900";
+		case "Expérimentations théoriques avec les ressources":
+			return "#e27100";	
+			
+		default:
+			return "grey";
+	}
+}
+}
+			var marker = L.circleMarker(latlng,{radius:8,fillColor:getMarkerColor(feature.properties.thema),fillOpacity:0.9,color:'black',weight:1,});
+			marker.bindPopup('<b>'+feature.properties.nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><img src="'+feature.properties.filename+'" alt="test" width="300"><br/><small>Projet © '+feature.properties.etudiants+'</small><br/><p>'+feature.properties.descr+'</p>');
+			return marker;
+		}
+				
+		});
+		
+		
+	
+	map.addLayer(geoLayer);
+	console.log (geoLayer);
+
+
+
 
   });
 
