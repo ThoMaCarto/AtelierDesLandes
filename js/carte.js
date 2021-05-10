@@ -237,11 +237,14 @@ function updateCheckboxStates()
 	};
 };
 //mise à jour de la liste à chaque click dans la liste à cocher
-//fonction de mise à jour 
-/*function updateProjectsLayer(){
-	updateCheckboxStates();
+//fonction affichage des filtres cochés
+var div2 = document.getElementById('filtres');
+function displaycheckboxStates () {
 	
-}*/
+	div2.innerHTML='<p>'+checkboxStates.value+'</p>';
+	
+};
+
 
 
 /// Création de la couche de travaux étudiants en fonction des acteurs cochés
@@ -287,6 +290,8 @@ function updateProjectsLayers2()
 	displayLayersInit();
 	//réaffichage du fond de carte
 	map.addLayer(bwLayer);
+	displaycheckboxStates();
+
 	
 	
 };
