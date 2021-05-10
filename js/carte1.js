@@ -12,7 +12,7 @@ var map = L.map('map',
 });
 
 //attribution
-var attribMARGINOV = '<b>Données</b> © <a href="http://www.marginov.cnrs.fr/?page_id=214">MARGINOV</a>'
+var attribMARGINOV = '<small>Prototype créé par <a href="https://cv.archives-ouvertes.fr/thomas-maillard">T. Maillard</a><br/>Informations fournies par <a href="https://www.passages.cnrs.fr/membres/nom/camille-mesnard/">C. Mesnard</a></small>'
 
 
 
