@@ -4,6 +4,7 @@ var map = L.map('map',
 {
 	maxZoom: 18,
 	minZoom: 9,
+	
 	maxBounds: [
 		[40, -6],
 		[55, 9]
@@ -120,7 +121,9 @@ north.addTo(map);
 
 /// Affichage de la couche test_geojson
 //chargement des points du geojson et définition du style
-var geoLayer = L.geoJson(projetsEtudiant,{
+function displayLayersInit()
+{
+var geoLayer = L.geoJson(projetsEtudiantChecked,{
 	pointToLayer: function (feature,latlng){
 		///Paramètre de style des points
 		function getMarkerColor(d){
@@ -143,15 +146,22 @@ var geoLayer = L.geoJson(projetsEtudiant,{
 	}
 }
 ).addTo(map);
-
 ///paramètrage de la vue dela carte
+/*var centerMaptest = [geoLayer.getBounds().getCenter().lat,geoLayer.getBounds().getCenter().lng];
 
-var centerMaptest = [geoLayer.getBounds().getCenter().lat,geoLayer.getBounds().getCenter().lng];
+//Si il n'y a aucun point alors on applique le centre des Landes, si il y a des point alors on utilise le centre de gravité de ceux-ci.
 //si le centerMap = auto est auto alros centre de gravité de la couche territoires, sinon utilisation de la valeur de centermap
 function setMapCenter (centerMap){
 	if (centerMap === "auto"){return centerMaptest;}else{return centerMap;}
-}
-map.setView(setMapCenter (centerMap), 9);
+}*/
+map.setView(centerMap, 9);
+};
+
+
+
+
+
+
 
 ///gestion des filtres	
 //création d'un tableaux contenant les valeurs uniques des tags ressources
@@ -195,9 +205,9 @@ var TagsRCheckBox = '';
 
 for (var i = 0; i < TagsRessources2.length; i++)
 {
-	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updateProjectsLayer()" checked/>' + TagsRessources2[i] + '<br>';
+	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updateProjectsLayers2()" checked/>' + TagsRessources2[i] + '<br>';
 }
-div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateProjectsLayer()" checked/><b>Tout sélectionner</b><br>' 
+div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateProjectsLayers2()" checked/><b>Tout sélectionner</b><br>' 
 + TagsRCheckBox+'<br>';
 
 // gestion de la checkbox "all": tout sélectionner ou déselectionner en fonction du statut checked ou non
@@ -226,11 +236,64 @@ function updateCheckboxStates()
 		};
 	};
 };
-
-function updateProjectsLayer(){
+//mise à jour de la liste à chaque click dans la liste à cocher
+//fonction de mise à jour 
+/*function updateProjectsLayer(){
 	updateCheckboxStates();
 	
-}
+}*/
+
+
+/// Création de la couche de travaux étudiants en fonction des acteurs cochés
+////création d'un géojson temporaire contenant seulement les objets correspondant aux ressources sélectionnés dans les checkboxes
+var projetsEtudiantChecked = {
+	"type": "FeatureCollection",
+	"features": []
+};
+updateProjectsLayer();
+
+
+//mise à jour du geoJSON temporaire 
+function updateProjectsLayer()
+{
+	projetsEtudiantChecked.features.splice(0, projetsEtudiantChecked.features.length);
+	updateCheckboxStates();
+	for (var i = 0; i < projetsEtudiant.features.length; i++)
+	{
+		if (projetsEtudiant.features[i].properties.tags_ressources.some(x => checkboxStates.Type.some(y => y === x)) === true)
+		{
+			projetsEtudiantChecked.features.push(projetsEtudiant.features[i]);
+		}
+	};
+	return projetsEtudiantChecked;
+};
+// affichage de la couche des projetsEtudiant au chargement de la page
+displayLayersInit();
+
+/*4. Mise à jour de la carte à chaque fois que l'on coche ou décoche un acteur*/
+
+//création d'une couche affichant le geojson temporaire
+function updateProjectsLayers2()
+{
+	var projetsEtudiantChecked = {
+		"type": "FeatureCollection",
+		"features": []
+	};
+	updateProjectsLayer();
+	map.eachLayer(function(layer)
+	{
+		map.removeLayer(layer)
+	});
+	displayLayersInit();
+	//réaffichage du fond de carte
+	map.addLayer(bwLayer);
+	
+	
+};
+
+
+
+
 
 
 
