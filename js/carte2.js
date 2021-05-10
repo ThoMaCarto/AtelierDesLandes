@@ -123,6 +123,31 @@ north.addTo(map);
 //chargement des points du geojson et définition du style
 function displayLayersInit()
 {
+	
+//Création des marquers agglomérats d'icones: iconclustersInit
+	var iconclustersInit = L.markerClusterGroup(
+	{
+		maxClusterRadius: 30,
+		singleMarkerMode: false,
+		zoomToBoundsOnClick: true,
+		spiderfyOnMaxZoom: true,
+		clusterPane: '635',
+		iconCreateFunction: function(cluster)
+		{
+			var markers = cluster.getAllChildMarkers();
+			var n = markers.length;
+			var e = n * 6;
+			
+			return L.divIcon(
+			{
+				html: '<p style="line-height:'+e+'px;margin:auto;">'+markers.length+'</p>',
+				className: 'mycluster',
+				iconSize: L.point(e, e)
+			});
+		},
+	});
+	
+	
 var geoLayer = L.geoJson(projetsEtudiantChecked,{
 	pointToLayer: function (feature,latlng){
 		///Paramètre de style des points
@@ -145,7 +170,10 @@ var geoLayer = L.geoJson(projetsEtudiantChecked,{
 			return marker;
 	}
 }
-).addTo(map);
+);
+iconclustersInit.addLayer(geoLayer);
+
+iconclustersInit.addTo(map);
 ///paramètrage de la vue dela carte
 /*var centerMaptest = [geoLayer.getBounds().getCenter().lat,geoLayer.getBounds().getCenter().lng];
 
@@ -168,7 +196,7 @@ map.setView(centerMap, 9);
 var TagsRessources1 = [];
 var initSelectTagsR=[];
 for (var i = 0; i < projetsEtudiant.features.length; i++){
-			initSelectTagsR.push(projetsEtudiant.features[i].properties.tags_ressources)
+			initSelectTagsR.push(projetsEtudiant.features[i].properties.tags_enjeux)
 	}
 for (var j=0;j<initSelectTagsR.length;j++){
 	for(var e=0;e<initSelectTagsR[j].length;e++){
@@ -207,7 +235,7 @@ for (var i = 0; i < TagsRessources2.length; i++)
 {
 	TagsRCheckBox += '<input class="input" id="' + TagsRessources2[i] + '" type="checkbox" value="' + TagsRessources2[i] + '" onclick="updateProjectsLayers2()" checked/>' + TagsRessources2[i] + '<br>';
 }
-div1.innerHTML = '<h4>Ressources mobilisées</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateProjectsLayers2()" checked/><b>Tout sélectionner</b><br>' 
+div1.innerHTML = '<h4>Enjeux des projets</h4><input id="all" class="input" type="checkbox" onclick="toggle(this);updateProjectsLayers2()" checked/><b>Tout sélectionner</b><br>' 
 + TagsRCheckBox+'<br>';
 
 // gestion de la checkbox "all": tout sélectionner ou déselectionner en fonction du statut checked ou non
@@ -237,13 +265,7 @@ function updateCheckboxStates()
 	};
 };
 //mise à jour de la liste à chaque click dans la liste à cocher
-//fonction affichage des filtres cochés
-var div2 = document.getElementById('filtres');
-function displaycheckboxStates () {
-	
-	div2.innerHTML='<p>'+checkboxStates.value+'</p>';
-	
-};
+
 
 
 
@@ -263,7 +285,7 @@ function updateProjectsLayer()
 	updateCheckboxStates();
 	for (var i = 0; i < projetsEtudiant.features.length; i++)
 	{
-		if (projetsEtudiant.features[i].properties.tags_ressources.some(x => checkboxStates.Type.some(y => y === x)) === true)
+		if (projetsEtudiant.features[i].properties.tags_enjeux.some(x => checkboxStates.Type.some(y => y === x)) === true)
 		{
 			projetsEtudiantChecked.features.push(projetsEtudiant.features[i]);
 		}

@@ -62,3 +62,19 @@ details>img{float:left;}
 	max-width:30vw;
 	max-height:90%;
 }
+
+.mycluster{
+	display:flex;
+	
+  background-clip: padding-box;
+  background-color: rgba(65,105,225, .9);
+  border: 3px solid rgba(65,105,225, .6);
+ text-align: center;
+  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border-radius: 5rem;
+ 
+  
+  box-shadow: 6px 6px 6px 0px rgba(0, 0, 0,.5);
+  
+}
