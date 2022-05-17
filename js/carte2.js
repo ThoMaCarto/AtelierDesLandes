@@ -139,11 +139,17 @@ var geoLayer = L.geoJson(projetsEtudiantChecked,{
 			
 			+'<div id="slider">'
 			+'<figure>'
-				+'<img src="doc/img/'+feature.properties.ID+'_0.jpg" alt="" width="300">'
-				+'<img src="doc/img/'+feature.properties.ID+'_1.jpg" alt="" width="300">'
-				+'<img src="doc/img/'+feature.properties.ID+'_2.jpg" alt="" width="300">'
-				+'<img src="doc/img/'+feature.properties.ID+'_3.jpg" alt="" width="300">'
-				+'<img src="doc/img/'+feature.properties.ID+'_4.jpg" alt="" width="300">'
+				+'<img src="doc/img/'+feature.properties.ID+'_0.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_1.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_2.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_3.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_4.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_5.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_6.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_7.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_8.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_9.jpg" alt="">'
+				+'<img src="doc/img/'+feature.properties.ID+'_00.jpg" alt="">'
 			+'</figure>'
 			+'</div>');
 			return marker;
