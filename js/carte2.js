@@ -27,7 +27,7 @@ var osmfr = L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png'
 	minZoom: 9,
 	maxZoom: 18,
 	
-});
+}).addTo(map);
 
 
 /*///paramètrage de la vue dela carte
@@ -56,47 +56,7 @@ map.getPane('635').style.zIndex = 635;
 
 
 
-// Ajouter ajout des tile layers	
-// création d'une couche "bwLayer" un fond de carte en grisaille
 
-var osmfr = L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
-{
-	attribution: '<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="http://openstreetmap.fr">OSM France</a><br>' + attribMARGINOV,
-	opacity: 0.5,
-	maxZoom: 19,
-	
-}).addTo(map);
-
-var bwLayer = L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-{
-	attribution: '<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a><br>' + attribMARGINOV,
-	opacity: 0.8,
-	maxZoom: 19,
-	
-}).addTo(map);
-
-var watercolor = L.tileLayer('http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',{
-	attribution:'<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a><br><a href="http://maps.stamen.com/#watercolor/">Stamen</a>',
-	opacity: 0.8,
-	maxZoom: 19,
-	
-	});
-	
-
-
-var maplabels = L.tileLayer('http://a.tile.stamen.com/toner-labels/{z}/{x}/{y}.png',{
-	attribution:'<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a><br><a href="http://maps.stamen.com/#watercolor/">Stamen</a>',
-	opacity: 0.8,
-	maxZoom: 19,
-	pane:'205',
-	});
-	
-var stamenToner = L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png',{
-	attribution:'<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a><br><a href="http://maps.stamen.com/#toner/">Stamen</a>',
-	opacity: 0.8,
-	maxZoom: 19,
-	pane:'205',
-	});
 
 
 
@@ -320,7 +280,7 @@ function updateProjectsLayers2()
 	});
 	displayLayersInit();
 	//réaffichage du fond de carte
-	map.addLayer(bwLayer);
+	map.addLayer(osmfr);
 	displaycheckboxStates();
 
 	
