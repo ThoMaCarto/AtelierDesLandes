@@ -135,7 +135,7 @@ var geoLayer = L.geoJson(projetsEtudiantChecked,{
 			}
 		}
 			var marker = L.circleMarker(latlng,{radius:8,fillColor:getMarkerColor(feature.properties.thema),fillOpacity:0.9,color:'black',weight:1,});
-			marker.bindPopup('<b>'+feature.properties.nom+'</b><br/><b>Coordonnées :</b> '+feature.geometry.coordinates+'<br/><p><b>Thèmatique : </b><span style="color:'+getMarkerColor(feature.properties.thema)+';">'+feature.properties.thema+'</span></p><small>Projet © '+feature.properties.etudiants+'</small><br/><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/fr/"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png" alt="Licence CC By-NC-SA 2.0"  title="Licence Creativ Commons - Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 2.0 France"  style="width:15%;"><br/></a><p>'+feature.properties.descr+'</p>'
+			marker.bindPopup('<h2>'+feature.properties.nom+'</h2><br/><b>Année :</b> '+feature.properties.date+'<br/><p><b>Thèmatique : </b><span style="color:'+getMarkerColor(feature.properties.thema)+';">'+feature.properties.thema+'</span></p><small>Projet © '+feature.properties.etudiants+'</small><br/><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/fr/"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png" alt="Licence CC By-NC-SA 2.0"  title="Licence Creativ Commons - Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 2.0 France"  style="width:15%;"><br/></a><p>'+feature.properties.descr+'</p>'
 			
 			+'<div id="slider">'
 			+'<figure>'
