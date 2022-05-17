@@ -83,13 +83,13 @@ details>img{float:left;}
 
 
 
-div#slider { width: 100%; overflow: scroll; }
+div#slider { width: 100%; overflow: scroll;  background-color:grey;}
 
-div#slider figure img { width: 20%; height: auto; float: left; background-color:grey;}
+div#slider figure img { width: 10%; height: auto; float: left;}
 
 div#slider figure {
   position: relative;
-  width: 500%;
+  width: 1000%;
   margin: 0;
   padding: 0;
   font-size: 0;
