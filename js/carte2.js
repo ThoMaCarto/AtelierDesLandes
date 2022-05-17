@@ -58,6 +58,15 @@ map.getPane('635').style.zIndex = 635;
 
 // Ajouter ajout des tile layers	
 // création d'une couche "bwLayer" un fond de carte en grisaille
+
+var osmfr = L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+{
+	attribution: '<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="http://openstreetmap.fr">OSM France</a><br>' + attribMARGINOV,
+	opacity: 0.5,
+	maxZoom: 19,
+	
+}).addTo(map);
+
 var bwLayer = L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
 {
 	attribution: '<b>Fond de carte</b> © <a href="http://osm.org/copyright">OpenStreetMap</a><br>' + attribMARGINOV,
