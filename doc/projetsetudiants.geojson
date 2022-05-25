@@ -1,5 +1,7 @@
 {
 	"type": "FeatureCollection",
+	"name": "marginov-atelier-des-landes",
+	
   "features": [
     {
       "type": "Feature",
